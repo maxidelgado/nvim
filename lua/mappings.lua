@@ -76,6 +76,7 @@ map("n", "<S-Down>", "vj", { desc = "JetBrains: Multi Line Select Down" })
 map("v", "<S-Down>", "j", { desc = "JetBrains: Multi Line Select Down" })
 map("n", "<S-Up>", "vk", { desc = "JetBrains: Multi Line Select Up" })
 map("v", "<S-Up>", "k", { desc = "JetBrains: Multi Line Select, Up" })
+map("n", "<Leader>gg", ":LazyGit<CR>", { desc = "JetBrains: Open LazyGit" })
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
