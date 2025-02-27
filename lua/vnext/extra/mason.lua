@@ -26,6 +26,7 @@ return {
       "html",
       "sqlls",
       "buf_ls",
+      "jsonnet_ls",
     }
 
     local tools = {
