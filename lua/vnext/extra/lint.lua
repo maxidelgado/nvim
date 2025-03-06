@@ -1,4 +1,5 @@
 return {
+  {
     "mfussenegger/nvim-lint",
     event = { "BufWritePost", "BufReadPost", "InsertLeave" },
     opts = {
@@ -110,5 +111,6 @@ return {
     })
 
     -- require("nvim-ts-autotag").setup()
-  end,
+    end,
+  },
 }
