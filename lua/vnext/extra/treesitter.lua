@@ -28,6 +28,7 @@ return {
       "vim",
       "yaml",
       "svelte",
+      "tsx",
     },
   },
   dependencies = {
