@@ -4,6 +4,7 @@ return {
   opts = {
     servers = {
       jsonls = {},
+      jsonnet_ls = {},
       tsserver = {},
       sqlls = {},
       svelte = {},

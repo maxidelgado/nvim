@@ -26,6 +26,7 @@ return {
       "sqlls",
       "buf_ls",
       "rust_analyzer",
+      "jsonnet_ls",
     }
 
     local tools = {
