@@ -5,12 +5,19 @@ return {
     servers = {
       jsonls = {},
       tsserver = {},
-      ts_ls = {},
       sqlls = {},
       svelte = {},
       bashls = {},
       dockerls = {},
-      angularls = {},
+      rust_analyzer = {
+        settings = {
+          ["rust-analyzer"] = {
+            diagnostics = {
+              enable = false,
+            },
+          },
+        },
+      },
       gopls = {
         settings = {
           gofumpt = true,
@@ -178,6 +185,9 @@ return {
     capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities())
     for server, server_opts in pairs(opts.servers) do
       server_opts.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server_opts.capabilities or {})
+      if server == "tsserver" then
+        server = "ts_ls"
+      end
       lspconfig[server].setup(server_opts)
     end
   end,
