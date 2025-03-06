@@ -15,10 +15,9 @@ return {
       "pyright",
       "lua_ls",
       "terraformls",
-      "ts_ls",
+      "tsserver",
       "yamlls",
       "docker_compose_language_service",
-      "docker-langserver",
       "graphql",
       "svelte",
       "angularls",
@@ -26,6 +25,7 @@ return {
       "html",
       "sqlls",
       "buf_ls",
+      "rust_analyzer",
     }
 
     local tools = {
