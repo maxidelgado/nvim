@@ -34,6 +34,7 @@ return {
       -- Formatter
       "isort",
       "prettier",
+      "prettierd",
       "stylua",
       "shfmt",
       "taplo",
