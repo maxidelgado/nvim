@@ -1,5 +1,7 @@
 local o = vim.opt
 
+vim.g.lazyvim_prettier_needs_config = false
+
 vim.g.autoformat = true -- global var for toggling autoformat
 
 -- stylua: ignore start
