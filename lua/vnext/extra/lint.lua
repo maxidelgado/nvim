@@ -17,6 +17,7 @@ return {
           toml = { "taplo" },
           typst = { "typstfmt" },
           yaml = { "yamlfmt" },
+          sql = { "sql_formatter" },
         },
 
       linters_by_ft = {

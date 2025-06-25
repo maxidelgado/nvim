@@ -31,6 +31,7 @@ return {
         toml = { "taplo" },
         typst = { "typstfmt" },
         yaml = { "yamlfmt" },
+        sql = { "sql_formatter" },
       },
     },
     config = function(_, opts)
