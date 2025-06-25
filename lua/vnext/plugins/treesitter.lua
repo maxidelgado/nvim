@@ -1,10 +1,13 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  -- TODO: master is deprecated but treesitter-endwise does not work with main branch
+  branch = "master",
   build = ":TSUpdate",
   event = { "BufReadPost", "BufNewFile" },
   opts = {
     ensure_installed = {
       "bash",
+      "bicep",
       "cmake",
       "css",
       "dockerfile",
@@ -24,13 +27,14 @@ return {
       "python",
       "regex",
       "terraform",
+      "templ",
       "toml",
       "vim",
       "yaml",
     },
   },
   dependencies = {
-    -- "RRethy/nvim-treesitter-endwise",
+    "RRethy/nvim-treesitter-endwise", -- mainly for lua 'closing end' insertion
     -- "mfussenegger/nvim-ts-hint-textobject",
     -- "windwp/nvim-ts-autotag",
   },
@@ -42,9 +46,9 @@ return {
       highlight = {
         enable = true,
       },
-      -- endwise = {
-      --   enable = true,
-      -- },
+      endwise = {
+        enable = true,
+      },
       indent = { enable = true },
       autopairs = { enable = true },
     })

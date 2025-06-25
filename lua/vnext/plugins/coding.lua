@@ -63,6 +63,7 @@ return {
     opts = {
       enable_lua_snip = true,
       kinds = {
+        auto_close = true,
         show_filepath = true,
         show_line = true,
       },
@@ -87,5 +88,10 @@ return {
       })
       require("kustomize").setup(opts)
     end,
+  },
+  {
+    "fredrikaverpil/godoc.nvim",
+    cmd = { "GoDoc" },
+    opts = {},
   },
 }

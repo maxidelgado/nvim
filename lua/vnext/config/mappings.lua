@@ -43,14 +43,6 @@ map("n", "<leader>fs", "<cmd>w<cr>", { desc = "Save file" })
 -- open path under cursor
 map("n", "<leader>fo", "gf", { desc = "Open path under cursor" })
 
--- diagnostics
--- stylua: ignore start
-map("n", "<leader>dj", function() vim.diagnostic.jump({ count = 1 }) end, { desc = "Next Diagnostic" })
-map("n", "<leader>dk", function() vim.diagnostic.jump({ count = -1 }) end, { desc = "Prev Diagnostic" })
-map("n", "<leader>dc", function() vim.diagnostic.open_float() end, { desc = "Toggle current diagnostic" })
-map("n", "<leader>dd", function() vim.diagnostic.setqflist() end, { desc = "Open quickfix" })
--- stylua: ignore end
-
 -- move over a closing element in insert mode
 map("i", "<C-l>", function()
   local closers = { ")", "]", "}", ">", "'", '"', "`", "," }
@@ -86,3 +78,25 @@ vim.api.nvim_del_keymap("n", "]D") -- vim.lsp.buf...
 
 vim.api.nvim_del_keymap("n", "gx") -- open filepath under cursor
 vim.api.nvim_del_keymap("x", "gx") -- open filepath under cursor
+
+vim.keymap.set("n", "<CR>", function()
+  if vim.bo.buftype == "quickfix" then
+    -- Execute the default Enter behavior in quickfix list
+    return vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<CR>", true, false, true), "n", false)
+  end
+  -- Get the current line number
+  local line = vim.fn.line(".")
+  -- Get the fold level of the current line
+  local foldlevel = vim.fn.foldlevel(line)
+  if foldlevel == 0 then
+    vim.notify("No fold found", vim.log.levels.INFO)
+  else
+    vim.cmd("normal! za")
+    vim.cmd("normal! zz") -- center the cursor line on screen
+  end
+end, { desc = "Toggle fold" })
+
+map("n", "<leader>uI", function()
+  vim.treesitter.inspect_tree()
+  vim.api.nvim_input("I")
+end, { desc = "Inspect Tree" })

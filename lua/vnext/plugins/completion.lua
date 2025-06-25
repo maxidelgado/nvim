@@ -9,7 +9,7 @@ return {
         opts = {},
       },
     },
-    version = "v0.*",
+    version = "v1.*",
     opts = {
       keymap = {
         ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
@@ -51,12 +51,18 @@ return {
           },
           snippets = {
             min_keyword_length = 2,
+            should_show_items = function(ctx)
+              return ctx.trigger.initial_kind ~= "trigger_character" and not require("blink.cmp").snippet_active()
+            end,
           },
           buffer = {
             min_keyword_length = 5,
             max_items = 5,
           },
         },
+      },
+      cmdline = {
+        completion = { menu = { auto_show = true } },
       },
       completion = {
         documentation = {

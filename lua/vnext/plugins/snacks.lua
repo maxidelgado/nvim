@@ -15,11 +15,11 @@ return {
         ---@type snacks.dashboard.Item[]
         -- stylua: ignore start
         keys = {
-          { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.picker.smart({filter = {cwd = true}, layout = 'default'})" },
+          { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.picker.files({filter = {cwd = true}, layout = 'default'})" },
           { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
           { icon = " ", key = "s", desc = "Find Text", action = ":lua Snacks.picker.grep({layout = 'default'})" },
-          { icon = " ", key = "b", desc = "File browser", action = function()  require("yazi").yazi(nil, vim.fn.getcwd()) end,
-          },
+          { icon = " ", key = "b", desc = "File browser", action = function()  require("yazi").yazi(nil, vim.fn.getcwd()) end},
+          {icon = " ", key = "g", desc = "Lazygit", action = ":lua Snacks.lazygit.open()" },
           { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy check", enabled = package.loaded.lazy },
           { icon = " ", key = "q", desc = "Quit", action = ":qa" },
           -- stylua: ignore end
@@ -28,17 +28,19 @@ return {
       sections = {
         { section = "header" },
         { section = "keys", gap = 1 },
-        { title = "Recent Files", section = "recent_files", indent = 2, padding = { 2, 2 } },
+        { title = "Recent Files", section = "recent_files", cwd = true },
         { section = "startup" },
       },
     },
     dim = { enabled = true },
+    image = {},
     indent = {
       enabled = true,
       indent = { only_scope = true }, -- only show indent where cursor is
       chunk = { enabled = true }, -- indents are rendered as chunks
       animate = { enabled = false }, -- do not animate -- feels slow for me
     },
+    input = { enabled = true },
     notifier = {
       enabled = true,
       timeout = 2000,
@@ -56,7 +58,6 @@ return {
       },
     },
     quickfile = { enabled = true },
-    scroll = { enabled = false },
     statuscolumn = { enabled = true },
     words = { enabled = true },
     zen = { enabled = true },
@@ -81,7 +82,9 @@ return {
     { "#",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev Reference" },
     { "<leader>ss", function() Snacks.picker.grep() end, desc = "Strings" },
     { "<leader>sh", function() Snacks.picker.help() end, desc = "Help" },
-    { "<leader>ff", function() Snacks.picker.smart({filter = {cwd = true}}) end, desc = "Smart find" },
+    { "<leader>ff", function() Snacks.picker.files({filter = {cwd = true}}) end, desc = "Find" },
+    { "<leader>fr", function() Snacks.picker.recent({filter = {cwd = true} }) end, desc = "Recent" },
+    { "<leader>bb", function() Snacks.picker.buffers() end, desc = "Buffers" },
     { "<leader>sl", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
     { "<leader>si", function() Snacks.picker.icons() end, desc = "Icons" },
     { "<leader>sL", function() Snacks.picker.lazy() end, desc = "LazySpec" },
@@ -98,6 +101,9 @@ return {
     { "<leader>lr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "References" },
     { "<leader>lI", function() Snacks.picker.lsp_implementations() end, desc = "Implementation" },
     { "<leader>lt", function() Snacks.picker.lsp_type_definitions() end, desc = "Type Definition" },
+    { "<leader>gg", function() Snacks.lazygit.open() end, desc = "Lazygit"},
+    { "<leader>sR", function() Snacks.picker.resume() end, desc = "Resume" }
+,
   },
   -- stylua: ignore end
   init = function()
